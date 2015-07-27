@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+	<title>stage 4 notes</title>
+</head>
+	<body>
+		<main class="document">
+
+			<header>
+				<h2>Project 4 Notes</h2>
+			</header>
+
+			<h4>Networks and the internet</h4>
+			<dl>
+				<dt>Network</dt>
+				<dd>A network is a group of entities that can communicate, even though they are not all directly connected.</dd>
+				<dt>Latency</dt>
+				<dd>The time it takes a message to get from the source to the destination. This can be used a measurement of a network.</dd>
+				<dt>Bandwidth</dt>
+				<dd>Amount of information that can be transmitted per unit of time: MBPS (mega bits per second). This can be used a measurement of a network.</dd>
+				<dt>Bit (Binary Digit)</dt>
+				<dd>Smallest unit of data that can be stored in a computer. It can be in only one of two states. For example yes/no or on/off can be represented as two opposed states.</dd>
+				<dt>Protocol</dt>
+				<dd>The procedures followed in a network by all parties to ensure that communication is successful. Any network must concern itself with the: encoding and interpreting of messages; the rules on how to send to each individual node/entity (routing); rules of priority. HTTP is the most common protocol used over the internet.</dd>
+			</dl>
+
+			<h4>URL - Uniform Resource locator</h4>
+			<p>
+				This is the information we enter in the address bar in our browsers. It must include the protocol, host and path. The host is the domain name of a server or it's I.P address. It is the description or location of the physical computer that stores the file. The path is a reference to the actual requested file.
+			</p>
+			<p>
+				Optionally the URL can include a query parameter and a fragment. The query parameter joins the end of the path. It is extra information that is sent to the server in the form of key:value pairs. The fragment is used to reference a particular part of the file. This would come after any query parameters and exists in the browser only.
+			</p>
+
+			<h4>A little on HTTP</h4>
+			<p>
+				Communication over the internet is usually between the client and server: a web browser will usually represent the client acting as a conduit for the user. When we 'visit' a web page our browser makes an HTTP request to the server: that is, a message requesting some file/resource. An HTTP request contains a request line and headers. The request line must specify a method e.g GET, the file, protocol and it's version. Headers modify the request; they are not compulsory. One such header field is <i>user-agent</i> which identifies the client or program (usually the browser) making the actual request.
+			</p>
+			<p>
+				Servers in return will respond with an HTTP response. This includes a status line and (usually but not necessarily) some headers and the message body or contents of the requested resource. The status line includes: the protocol used and it's version; and a status code accompanied by an english language description of it. Again the header fields provide additional information. For example, <i>Server</i> which is similar to user-agent and <i>content-type</i>.
+			</p>
+
+			<h4>Servers</h4>
+			<p>
+				The purpose of a server is to respond to incoming HTTP requests. The response from a server can be classified as either static - the server will return a pre-written/assembled file - or dynamic. A dynamic response is one in which the data is generated after the request is received; Some input may be obtained from the user or elsewhere, then a script is executed with the results providing some, or all, of the content of the response. This is what web applications do.
+			</p>
+
+			<h4>Web Forms</h4>
+			<p>
+				They are used to collect user input. A <i>form</i> tag contains elements - input tags - that define the type and manner of input. 
+			</p>
+			Some input tag attributes:
+			<ul>
+				<li>type: text, submit button, radio buttons.</li>
+				<li>name: used to reference this particular input.</li>
+				<li>value: used to define the default content/value.</li>
+			</ul>
+			<p>
+				The method attribute of a form tag defines the type of HTTP request that is created once the form is submitted to the server. The GET request is the default. With a GET request any form data is visible in the address bar; so sensitive data should not be sent via the GET request. This is one of the reasons why the GET request should only be used to retrieve data. On the other hand a POST request sends the user input in the request body so is more appropriate for handling sensitive data: this method is generally used when altering the server or database.
+			</p>
+
+			<h4>Input validation</h4>
+			<p>
+				Is about checking that the input from the client is legitimate and safe. We do not want input that could corrupt our page or enable some entity to access any sensitive data. In general this would involve checking the input's type, length or if it includes any characters or sequence of characters that may prove harmful. For example, including HTML syntax as input may disfugure our web page or it may just be that you only wish to receive a very limited range of input.
+			</p>
+			<p>
+				Many programs provide an HTML escaping service. They substitute characters that are used in structuring HTML for a legend of obscure characters. Once rendered these take the form of the desired HTML syntax without being treated as such.
+			</p>
+
+			<h4>Google App Engine - GAE</h4>
+			<p>
+				Is a service provided by Google. GAE handles all the aspects required for hosting a live web application; server configuration, traffic management, data storage and management. This allows the beginner and seasoned programmer alike to focus their development effort on their web applications's features and functionality.
+			</p>
+			<p>
+				GAE requires the user to download their - language appropriate - software development kit (SDK). With this comes a test environment, live deployment of the app via a button and logs for debugging and general maintenance. Changes to the app are realised upon a simple refresh of the page in the browser.
+			</p>
+			<p>
+				GAE requires a configuration file called app.yaml to be located in the app's root directory. This file informs GAE which version of the app to run, the runtime or language and version used and which script to be executed according to the URL requested.
+			</p>
+
+			<h4>WSGI - Web Server Gateway Interface</h4>
+			<p>
+				A protocol specific to the python language which strives to universalise the interaction between a web server and a web application or framework.
+			</p>
+
+			<h4>Web Application</h4>
+			<p>
+				Is a program hosted on a server that can store and retrieve data to and from a database. Many webapps build content dynamically based on the input from a user. Examples of web apps are: shopping carts, login systems and donation mechanisms.
+			</p>
+
+			<h4>Web Application Framework</h4>
+			<p>
+				A program that handles and implements a protocol between a web server and a web app. In our case, webapp2, which is bundled with the SDK, provides for receiving and responding to HTTP requests. Simple classes are defined with methods to route requests for particular pages (resources) to handlers (extensions of the webapp2 classes which have methods available that provide access to the HTTP requests and issue a response in turn). Again this allows development efforts to be focused on the features and functionality of our webapp.
+			</p>
+
+			<h4>Templating</h4>
+			<p>
+				Is a method used to avoid mixing HTML with other code. The HTML is separated and put into another file. Special syntax provided by some third party program (independently known as a templating system but lightweight ones can be bundled with a web framework) indicates where in the HTML data from the web app should appear. The HTML file can just be provided as is; but more typically some of the HTML structure is defined statically interspersed with dynamic content provided by the app. In our case it is Python code that is inserted into the HTML. Jinja2 is a template engine bundled with the Python SDK.  
+			</p>
+
+			<h4>Template inheritance</h4>
+			<p>
+				Is where a template is embedded within another. The two (or more) templates are actually separate files; special syntax dictates where specifically in the host file the contents of the other/s will be embedded. When documents share the same elements - in HTML this could be the same header, footer, layout, colour scheme - a base or common document can be defined where other templates can then provide the unique content. Here, we generalise common code reducing repetition. The code is modularised which helps reduce the occurence of bugs and simplify the process of finding them. Code separated according to it's function is easier to read, develop and modify.
+			</p>
+
+			<h4>HTTP redirect</h4>
+			<p>
+				When the client is sent to another URL by a server. These are helpful for when a client has mistyped their desired URL. But in our case we use the redirect to send the user to another page after sending some input. This page is updated with the new data and can be refreshed. With a POST request the data is used to update the server in some way. This page can not be shared or refreshed as the data would have to be resent. Also, the current page would of course not show the changes (in our case the message).
+			</p>
+
+			<h4>Database</h4>
+			<p>
+				Is a collection of persistent data that is maintained independent of applications and stored in a particular structure.
+				Accessing data stored in a database is called querying.
+			</p>
+			<p>
+				ACID is an acronymn for <b>A</b>tomicity <b>C</b>onsistently <b>I</b>solation <b>D</b>urability. These are the properties that need to be adhered to for a working reliable database. A <i>transaction</i> is a modification to a database and may include more then one operation on the database to complete it. Now, in order, these terms or properties are: all parts of a transaction must either succeed or fail; different tables holding the same data fields must be the same; separate transactions must not interfere with each other; changes to the database must endure. A quick example of why these terms are important: there may be requests for data that are due to be or are in the process of being modified and during this process - computers are fast but not instantaneous - other users may modify or request the data in question.
+			</p>
+
+			<h4>Relational databases and SQL (Structured Query Language)</h4>
+			<p>
+				A <i>relational</i> database models their data around tables. Tables are structured as columns, which are the data fields, and rows, which are the entries in the table. To insert, update, check or remove data queries are made by referencing the tables. SQL is the language used to interact with the database. MySQL and postgreSQL are different types of relational databases.  
+			</p>
+
+			<h4>Indexes</h4>
+			<p>
+				An index is used to optimize the queries made to a database. The idea is that you only really want to search through the data that you are interested in; which in many cases will not include the entire database. A database index is a copy of the values of a specific column of a database table. It is a separate data structure requiring space in the memory so planning is required when creating them.
+			</p>
+			<p>
+				Two common structures:
+			</p>
+			<dl>
+				<dt>Hash table</dt>
+				<dd>key:value pairs. The key would be a data field (column in a relational database) with value being a pointer or reference to the row data. Hash tables cannot be sorted; so they are best employed when looking for a specific row.</dd>
+
+				<dt>Tree</dt>
+				<dd>Elements of a tree can be sorted. These are employed when you are searching for data in a range or data within a set e.g the greatest or smallest.</dd>
+			</dl>
+
+			<h4>GAE datastore</h4>
+			<p>
+				Is a database or content repository. The database is structured hierarchically based on the concept of entities. An entity is an object that represents both the table and a row where the data fields are the attributes of this object. Each entity has a unique key to reference it. A key is a kind-identifier pair: where as a default <i>kind</i> is the name of it's class but can be changed; the <i>identifier</i> is assigned an integer by the datastore unless a string is provided.
+			</p>
+			<p>
+			  	To query an entity it's key must be provided. And to simultaneously query a group of entities a <i>parent</i> or <i>ancestor</i> key is given. A group query more clearly represents a query on a table in a relational database.
+			</p>
+			<p>
+				SQL is not used. Instead GAE provides it's own API called the <em>ndb</em> module for data modelling and management.
+			</p>
+		</main>
+
+		<section class="document">
+			<header>
+				<h2>Project 4 Web App</h2>
+			</header>
+			{% block content %}
+
+			{% endblock %}
+		</section>
+	
+	</body>
+</html>

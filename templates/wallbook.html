@@ -1,0 +1,41 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<form action="/sign" method="post">
+
+	<div class="app_container">
+		<div class="app_instructions">
+			<h2>Leave a friendly message</h2>
+			<div>
+				<textarea name="message" rows="5" cols="30">{{ error_msg }}</textarea>
+			</div>
+			<div><input type="submit" value="Post comment"></div>
+			<!-- add user details login/out etc -->
+			<br>
+			<span>Logged in as: {{ user_name }}
+			<br>
+			<a href={{url}}>{{ url_linktext }}</a>
+		</div>
+		<div class="msg_board">
+			<!-- using passed in key value -->
+			{% if posts %}
+				{% for post in posts %}
+					<div class="message">
+						<span class="message_details">
+							Author : {{ post.author.name }}
+						</span>
+						<span class="message_details">
+							Posted : {{ post.date }}
+						</span>
+						<br>
+						<span>{{ post.content }}</span>
+					</div>
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+
+</form>
+
+{% endblock %}
