@@ -28,6 +28,7 @@ class Author(ndb.Model):
 	email = ndb.StringProperty(indexed=False)
 
 class Post(ndb.Model):
+	"""Sub model for representing an post."""
 	author = ndb.StructuredProperty(Author)
 	content = ndb.StringProperty(indexed=False)
 	# we will only need to query by date of entity creation
@@ -40,7 +41,7 @@ class Post(ndb.Model):
 ANCESTOR_KEY = ndb.Key('Wallbook', 'Public')
 
 class Handler(webapp2.RequestHandler):
-	"""comment"""
+	"""Helper methods for dealing with templates"""
 	def write(self, *a, **kw):
 		self.response.out.write(*a, **kw)
 
@@ -55,11 +56,12 @@ class Handler(webapp2.RequestHandler):
 
 
 class MainPage(Handler):
+	"""Handles GET requests and redirects after successful posting"""
 	def get(self):	
 		# [START QUERY]
 		# to query the datastore. classname(of entity).query(args)
 		post_queries = Post.query(ancestor=ANCESTOR_KEY).order(-Post.date)
-		#
+		num_posts = 3
 		posts = post_queries.fetch(3)
 		# [END QUERY]
 
@@ -91,6 +93,7 @@ class MainPage(Handler):
 
 
 class Greeting(Handler):
+	"""Handles POST requests"""
 	def post(self):
 		# grab content user has posted ready for testing and then saving
 		msg = self.request.get("message")

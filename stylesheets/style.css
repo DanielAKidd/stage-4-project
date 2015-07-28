@@ -1,9 +1,6 @@
-* {
-	box-sizing: border-box;
-}
-
 body {
 	background-color: #C5C1F5;
+	box-sizing: border-box;
 }
 
 header {
